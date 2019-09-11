@@ -1,0 +1,97 @@
+.flex {
+    display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 20px;
+}
+
+.flexdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    font-size: 3em;
+    margin: 20px;
+    padding: 20px;
+}
+
+.sbox {
+    font-size: 2.5em;
+    border-style: solid;
+    width:50px;
+    padding: 20px;
+    text-align: center;
+    margin: 5px;
+    color: #829ac4;
+    border-color: black;
+}
+
+.sbox:hover {
+    color: white;
+    transition: 1.2s;
+}
+
+body {
+    background-color: #829ac4;
+    color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    font-size: 2.5em;
+}
+
+header, main, nav, footer {
+    text-align: center;
+    font-family: "Courrier New", monospace;
+}
+
+nav a { /*Links within "nav" container */
+    padding:15px;
+    padding-bottom: 4px;
+    font-size: 2em;
+    text-decoration: none; /*removes underline*/
+    color: white; /*links are normally blue*/
+}
+
+nav a:hover {
+    border-bottom: 3px red solid;
+    font-size: 2.4em;
+    transition: .9s;
+}
+
+main div p {
+    font-size: 1.5em;
+    margin: 5px;
+}
+
+main div p:hover {
+    color:white;
+    transition: 1.2s;
+}
+
+x {
+    font-size: 1.5em;
+    margin-top: 40px;
+}
+
+myimg {
+    border-style: solid;
+}
+
+#additions {
+    font-size: 1.5em;
+    margin: 5px;
+    color: black;
+}
+
+.difflex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
