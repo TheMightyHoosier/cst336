@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head> <!-- Everything in the head before anything in the body! -->
+        <title>Now You See It</title>
+        
+        <style>
+            .hide{
+                display:none;
+            }
+        </style>
+    </head>
+    
+    <body>
+        
+        <img id="see" src='image/nowyouseeit.png' />
+        
+        <div>
+            <button id="change">Play with the cat</button>
+            <button id="moon">Send the cat to the moon</button>
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            
+            //let seeImage = document.getElementById('see');
+            let seeImage = $("#see");
+            
+            //let changeButton = document.getElementById('change');
+            let changeButton = $("#change");
+            
+            //changeButton.addEventListener('click', function(e){
+            //    seeImage.setAttribute('src', 'image/nowyoudont.png');
+            //});
+            changeButton.on('click', function(e){
+                //seeImage.setAttribute('src', 'image/nowyoudont.png');
+                seeImage.attr('src', 'image/nowyoudont.png');
+            });
+            
+            //document.getElementById('moon').addEventListener('click', function(e){
+            //    seeImage.setAttribute('class', 'hide');
+            //});
+            
+            $("#moon").on('click', onMoonClick);
+            
+            function onMoonClick(e){
+                //seeImage.setAttribute('class', 'hide');
+                seeImage.attr('class', 'hide');
+            }
+            
+        </script>
+        
+    </body>
+    
+    <!-- 
+    Braces are an object, brackets are an array 
+    DOM - Document Object Model.
+    
+    -->
+</html>
