@@ -1,0 +1,184 @@
+<html>
+
+<head>
+
+    <title>CST336 Midterm Exam Practice</title>
+
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+
+        tr, td{
+
+            border:1px gray solid;
+
+            text-align: right;
+
+            padding:5px;
+
+        }
+
+        body, th {
+
+            text-align: center;
+
+        }
+
+        table {
+
+            margin: 0 auto;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+    
+    <script>
+    /* global $ */
+    $(document).ready(function() {
+        
+        var x = Math.floor((Math.random() * 4));
+        
+        $.ajax({
+          method: "GET",
+             url: "https://cst336.herokuapp.com/projects/api/promo_products.php",
+        dataType: "json",
+            data: { "zip": $("#zip").val() },
+         success: function(result,status) {
+              $("#prName").html(result[x].productName);
+              $("#prPrice").html(result[x].price);
+              $("#prNumber").val(result[x].qty);
+            }
+        });//ajax
+    });
+    </script>
+
+    <h1 class="jumbotron"> End-of-Summer Sale! </h1>
+
+    <h2> Cart </h2>    
+
+    <table>
+
+    <tr>
+
+        <th>Product</th>
+
+        <th>Unit Price</th>
+
+        <th> Quantity </th>
+
+        <th>Total</th>
+
+    </tr>
+
+    <tr>
+
+        <td id="prName"> </td>
+
+        <td id="prPrice"> </td>
+
+        <td><input id="prNumber" type="text" size="5" value=""></td>
+
+        <td id="prTotal"> </td>
+
+    </tr>
+
+    <tr>
+
+        <td>Discount</td>
+
+        <td> </td>
+
+        <td> </td>
+
+        <td> </td>
+
+    </tr>
+
+   <tr>
+
+        <td>Shipping</td>
+
+        <td> </td>
+
+        <td> </td>
+
+        <td> </td>
+
+    </tr>    
+
+    <tr>
+
+        <td>Subtotal</td>
+
+        <td> </td>
+
+        <td> </td>
+
+        <td> </td>   
+
+    </tr>             
+
+
+
+    <tr>
+
+        <td>Tax (10%)</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td> </td>       
+
+    </tr>
+
+      <tr>
+
+        <td>Total</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td> </td>
+
+    </tr>
+
+    </table>
+
+    <br><br>
+
+    <strong>Promo Code: </strong> <input type="text">
+
+
+    <h3>Shipping & handling</h3>
+    
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown button
+      </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Next Day Delivery</a>
+            <a class="dropdown-item" href="#">3 Day Delivery</a>
+            <a class="dropdown-item" href="#">Regular Delivery</a>
+        </div>
+    </div>
+
+    <!--Essentially the end of the body-->
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>
