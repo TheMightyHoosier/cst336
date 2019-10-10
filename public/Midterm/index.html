@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Midterm Exam</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <div class="d-flex justify-content-center">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZZ5LpwO-An4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <div class="d-flex justify-content-center">
+            <button id="seeComments" type="button" class="btn btn-secondary m-3">See<br>Comments</button>
+            <button id="answerQ" type="button" class="btn btn-secondary m-3">Answer<br>Question</button>
+            <button id="like" type="button" class="btn btn-secondary m-3"><img src="img/bluelike.png" alt="sad times" /></button>
+            <button id="unlike" type="button" class="btn btn-secondary m-3 d-none"><img src="img/greylike.png" alt="sad times" /></button>
+            <h3 id="numlikes"></h3>
+            <button id="dislike" type="button" class="btn btn-secondary m-3"><img src="img/bluedislike.png" alt="sad times" /></button>
+            <button id="undislike" type="button" class="btn btn-secondary m-3 d-none"><img src="img/greydislike.png" alt="sad times" /></button>
+            <h3 id="numdislikes"></h3>
+            <!--https://cst336.herokuapp.com/projects/api/videoLikesAPI.php?videoId=ZZ5LpwO-An4&action=comments-->
+            
+        </div>
+        
+        
+         <br><br><br>
+         
+         <div id="drop" class="dropdown d-flex justify-content-center">
+             <button class="btn btn-secondary dropdown-toggle d-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 What was this video about?
+             </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                 <a id="wrong" class="dropdown-item" href="#">A sneezing panda</a>
+                 <a id="correct" class="dropdown-item" href="#">A hot and spicy meme</a>
+                 <a id="wrong2" class="dropdown-item" href="#">A Rick-Roll</a>
+             </div>
+        </div>
+        
+        <div id="yes" class="alert alert-success d-none" role="alert">
+            Correct!
+        </div>
+        <div id="no" class="alert alert-danger d-none" role="alert">
+            Incorrect!
+        </div>
+        
+        <br><br><br>
+        
+        <div class="d-flex justify-content-center">
+            <h3 id="comment1"></h3>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h3 id="comment2"></h3>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h3 id="comment3"></h3>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h3 id="comment4"></h3>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h3 id="comment5"></h3>
+        </div>
+        
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div id="rubricDiv">
+            <table border="1" width="600" cellpadding="10px">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Task Description</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="color:green">
+                        <td>1</td>
+                        <td>All elements are included (video and buttons)<br></td>
+                        <td width="20" align="center">10</td>
+                    </tr>
+                    <tr style="color:red">
+                        <td>2</td>
+                        <td>Initial number of likes/dislikes is displayed from API when loading page<br></td>
+                        <td width="20" align="center">10</td>
+                    </tr>
+                    <tr style="color:red">
+                        <td>3</td>
+                        <td>When clicking on any like/dislike button, it's hidden and the other blue/grayedout button is displayed <br></td>
+                        <td width="20" align="center">10</td>
+                    </tr>
+                    <tr style="color:red">
+                        <td>4</td>
+                        <td>When clicking on any like/dislike button, the corresponding value is updated via an AJAX call <br></td>
+                        <td width="20" align="center">20</td>
+                    </tr>
+                    <tr style="color:red">
+                        <td>5</td>
+                        <td>When clicking on "See Comments", author, date, and comment are displayed via AJAX in the following format: <br> <b>Author</b> <i>Date</i><br>Comment<br></td>
+                        <td width="20" align="center">20</td>
+                    </tr>
+                    <tr style="color:red">
+                        <td>6</td>
+                        <td>When clicking on "See Comments", comments are in random order<br></td>
+                        <td width="20" align="center">10</td>
+                    </tr>
+                    <tr style="color:red">
+                        <td>7</td>
+                        <td>When clicking on "See Comments", stars are displayed based on the RATING value<br></td>
+                        <td width="20" align="center">10</td>
+                    </tr>
+                    <tr style="color:red">
+                        <td>8</td>
+                        <td>When clicking on "Answer Question" a dropdown question is displayed <br></td>
+                        <td width="20" align="center">5</td>
+                    </tr>
+                    <tr style="color:red">
+                        <td>9</td>
+                        <td>When answering the question, color-coded feedback is displayed <br></td>
+                        <td width="20" align="center">15</td>
+                    </tr>
+                    <tr style="color:red">
+                        <td>10</td>
+                        <td>Page has nice design: content is centered, all buttons right below the video <br></td>
+                        <td width="20" align="center">10</td>
+                    </tr>
+                    <tr style="color:green">
+                        <td>11</td>
+                        <td>This rubric is properly included AND UPDATED</td>
+                        <td width="20" align="center">3</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>T O T A L </td>
+                        <td width="20" align="center">&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+
+
+
+
+
+
+
+        <script>
+            /* global $ */
+            $(document).ready(function() {
+                $.ajax({
+                    method: "GET",
+                    url: "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php?videoId=ZZ5LpwO-An4",
+                    dataType: "json",
+                    data: { "tube": $("#tube").val() },
+                    success: function(result,status) {
+                        $("#numlikes").html(result.likes);
+                        $("#numdislikes").html(result.dislikes);
+                    }
+                });//ajax
+                
+                $("#seeComments").on("click", function(){
+                    $.ajax({
+                    method: "GET",
+                    url: "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php?videoId=ZZ5LpwO-An4&action=comments",
+                    dataType: "json",
+                    data: { "tube": $("#tube").val() },
+                    success: function(result,status) {
+                        $("#comment1").html("<strong>" + result[0].author + "</strong>, " + result[0].date + ":<br>'" + result[0].comment + "'<br><br>");
+                        $("#comment2").html("<strong>" + result[1].author + "</strong>, " + result[1].date + ":<br>'" + result[1].comment + "'<br><br>");
+                        $("#comment3").html("<strong>" + result[2].author + "</strong>, " + result[2].date + ":<br>'" + result[2].comment + "'<br><br>");
+                        $("#comment4").html("<strong>" + result[3].author + "</strong>, " + result[3].date + ":<br>'" + result[3].comment + "'<br><br>");
+                        $("#comment5").html("<strong>" + result[4].author + "</strong>, " + result[4].date + ":<br>'" + result[4].comment + "'<br><br>");
+                    }
+                });//ajax
+                });
+                
+                $("#answerQ").on("click", function(){
+                    $("#dropdownMenuButton").removeClass("d-none");
+                });
+                
+                $("#wrong").on("click", function(){
+                    $("#no").removeClass("d-none");
+                    $("#yes").addClass("d-none");
+                })
+                
+                $("#wrong2").on("click", function(){
+                    $("#no").removeClass("d-none");
+                    $("#yes").addClass("d-none");
+                })
+                
+                $("#correct").on("click", function(){
+                    $("#yes").removeClass("d-none");
+                    $("#no").addClass("d-none");
+                })
+                
+                $("#like").on("click", function(){
+                    $("#like").addClass("d-none");
+                    $("#unlike").removeClass("d-none");
+                });
+                
+                $("#unlike").on("click", function(){
+                    $("#unlike").addClass("d-none");
+                    $("#like").removeClass("d-none");
+                });
+                
+                $("#dislike").on("click", function(){
+                    $("#dislike").addClass("d-none");
+                    $("#undislike").removeClass("d-none");
+                });
+                
+                $("#undislike").on("click", function(){
+                    $("#undislike").addClass("d-none");
+                    $("#dislike").removeClass("d-none");
+                });
+            });
+            
+            
+        </script>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
