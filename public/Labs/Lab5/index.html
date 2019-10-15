@@ -10,83 +10,88 @@
         
         <h1 class="jumbotron d-flex justify-content-center">Pixabay Image Search</h1>
         
-        <div class="d-flex justify-content-center p-2">
-            <form class="h3" id="searchParams">
-                Keyword: <input type="text" id="search" name="keyword"><br>
-                Orientation: <input type="radio" id="vertical" name="orientation" value="v"> Vertical
-                             <input type="radio" id="horizontal" name="orientation" value="h"> Horizontal   
-                <input type="submit" id="button" value="Search">
-            </form>
+        <div class="d-flex justify-content-center p-2 h3 m-5">
+            <input type="email" class="form-control w-25" id="mySearch" aria-describedby="emailHelp" placeholder="Enter Keyword">
+            <button type="button" class="btn btn-secondary" id="vert">Search Vertical</button>
+            <button type="button" class="btn btn-secondary" id="horiz">Search Horizontal</button>
         </div>
         
         <div class="d-flex justify-content-center p-2">
             <div class="d-flex flex-column">
                 <div class="p-2" id="likes0"></div>
                 <div class="p-2">
-                    <img id="pic0" src="">
+                    <img id="pic0" class="rounded" src="">
                 </div>
             </div>
             <div class="d-flex flex-column">
                 <div class="p-2" id="likes1"></div>
                 <div class="p-2">
-                    <img id="pic1" src="">
+                    <img id="pic1" class="rounded" src="">
                 </div>
             </div>
             <div class="d-flex flex-column">
                 <div class="p-2" id="likes2"></div>
                 <div class="p-2">
-                    <img id="pic2" src="">
+                    <img id="pic2" class="rounded" src="">
                 </div>
             </div>
             <div class="d-flex flex-column">
                 <div class="p-2" id="likes3"></div>
                 <div class="p-2">
-                    <img id="pic3" src="">
+                    <img id="pic3" class="rounded" src="">
                 </div>
             </div>
             
         </div>
-        
-        
-        
 
-
-        
         <script>
             /* global $ */
-            //Example URL: https://pixabay.com/api/?key=5589438-47a0bca778bf23fc2e8c5bf3e&q=sun&orientation=vertical&image_type=vector
+            var API_KEY="13944946-19a9f2fa6c30e8ce9ea1ae987";
             
-            
-            $("#button").on("click", function(){
+            $("#vert").on("click", function(){
+                console.log("Button pushed");
                 
-                if($("input[name='orientation']:checked").val() == "v"){
-                    var orient = "vertical";
-                }
-                else{
-                    var orient = "horizontal";
-                }
-                
-                var myURL = "https://pixabay.com/api/?key=13944946-19a9f2fa6c30e8ce9ea1ae987" +
-                            "&q=" + encodeURIComponent($("#search").val()) + 
-                            "&orientation=" + orient;
-                console.log(myURL);        
-                        
                 $.ajax({
-                   method: "GET",
-                   url: myURL,
-                   dataType: "json",
-                   success: function(result, status){
-                       $("#pic0").attr("source", "https://cdn.pixabay.com/photo/2014/12/22/00/07/tree-576847_150.png");
-                       $("#pic1").attr("source", toString(result[1].previewURL));
-                       $("#pic2").attr("source", toString(result[2].previewURL));
-                       $("#pic3").attr("source", toString(result[3].previewURL));
-                       
-                       $("#likes0").html(toString(result[0].likes));
-                       $("#likes1").html(toString(result[2].likes));
-                       $("#likes2").html(toString(result[3].likes));
-                       $("#likes3").html(toString(result[4].likes));
-                   }
-               });//ajax 
+                    method: "GET",
+                    url: "https://pixabay.com/api/?key=" + API_KEY + "&q=" + $("#mySearch").val() + "&orientation=vertical",
+                    dataType: "json",
+                    data: { "state": $("#state").val() },
+                    success: function(result,status) {
+                        console.log("https://pixabay.com/api/?key=" + API_KEY + "&q=" + $("#mySearch").val() + "&orientation=vertical");
+                        $("#pic0").attr("src", result.hits[0].previewURL);
+                        $("#pic1").attr("src", result.hits[1].previewURL);
+                        $("#pic2").attr("src", result.hits[2].previewURL);
+                        $("#pic3").attr("src", result.hits[3].previewURL);
+                        
+                        $("#likes0").html("Likes: " + result.hits[0].likes);
+                        $("#likes1").html("Likes: " + result.hits[1].likes);
+                        $("#likes2").html("Likes: " + result.hits[2].likes);
+                        $("#likes3").html("Likes: " + result.hits[3].likes);
+                    }
+                });//ajax
+            });
+            
+            $("#horiz").on("click", function(){
+                console.log("Button pushed");
+                
+                $.ajax({
+                    method: "GET",
+                    url: "https://pixabay.com/api/?key=" + API_KEY + "&q=" + $("#mySearch").val() + "&orientation=horizontal",
+                    dataType: "json",
+                    data: { "state": $("#state").val() },
+                    success: function(result,status) {
+                        console.log("https://pixabay.com/api/?key=" + API_KEY + "&q=" + $("#mySearch").val() + "&orientation=horizontal");
+                        $("#pic0").attr("src", result.hits[0].previewURL);
+                        $("#pic1").attr("src", result.hits[1].previewURL);
+                        $("#pic2").attr("src", result.hits[2].previewURL);
+                        $("#pic3").attr("src", result.hits[3].previewURL);
+                        
+                        $("#likes0").html("Likes: " + result.hits[0].likes);
+                        $("#likes1").html("Likes: " + result.hits[1].likes);
+                        $("#likes2").html("Likes: " + result.hits[2].likes);
+                        $("#likes3").html("Likes: " + result.hits[3].likes);
+                    }
+                });//ajax
             });
         </script>
         
