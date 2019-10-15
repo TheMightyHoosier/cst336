@@ -72,7 +72,7 @@
             
             
             $("#prNumber").change(function(){
-                $("#prTotal").html("$" + parseInt($("#prNumber").val()) * parseInt($("#prPrice").html()));
+                $("#prTotal").html(parseInt($("#prNumber").val()) * parseInt($("#prPrice").html()));
             });
             $("#prNumber2").change(function(){
                 $("#prTotal2").html(parseInt($("#prNumber2").val()) * parseInt($("#prPrice2").html()));

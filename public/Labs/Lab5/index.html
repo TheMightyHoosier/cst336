@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pixabay Image Search</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        
+        <h1 class="jumbotron d-flex justify-content-center">Pixabay Image Search</h1>
+        
+        <div class="d-flex justify-content-center p-2">
+            <form class="h3" id="searchParams">
+                Keyword: <input type="text" id="search" name="keyword"><br>
+                Orientation: <input type="radio" id="vertical" name="orientation" value="v"> Vertical
+                             <input type="radio" id="horizontal" name="orientation" value="h"> Horizontal   
+                <input type="submit" id="button" value="Search">
+            </form>
+        </div>
+        
+        <div class="d-flex justify-content-center p-2">
+            <div class="d-flex flex-column">
+                <div class="p-2" id="likes0"></div>
+                <div class="p-2">
+                    <img id="pic0" src="">
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="p-2" id="likes1"></div>
+                <div class="p-2">
+                    <img id="pic1" src="">
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="p-2" id="likes2"></div>
+                <div class="p-2">
+                    <img id="pic2" src="">
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="p-2" id="likes3"></div>
+                <div class="p-2">
+                    <img id="pic3" src="">
+                </div>
+            </div>
+            
+        </div>
+        
+        
+        
+
+
+        
+        <script>
+            /* global $ */
+            //Example URL: https://pixabay.com/api/?key=5589438-47a0bca778bf23fc2e8c5bf3e&q=sun&orientation=vertical&image_type=vector
+            
+            
+            $("#button").on("click", function(){
+                
+                if($("input[name='orientation']:checked").val() == "v"){
+                    var orient = "vertical";
+                }
+                else{
+                    var orient = "horizontal";
+                }
+                
+                var myURL = "https://pixabay.com/api/?key=13944946-19a9f2fa6c30e8ce9ea1ae987" +
+                            "&q=" + encodeURIComponent($("#search").val()) + 
+                            "&orientation=" + orient;
+                console.log(myURL);        
+                        
+                $.ajax({
+                   method: "GET",
+                   url: myURL,
+                   dataType: "json",
+                   success: function(result, status){
+                       $("#pic0").attr("source", "https://cdn.pixabay.com/photo/2014/12/22/00/07/tree-576847_150.png");
+                       $("#pic1").attr("source", toString(result[1].previewURL));
+                       $("#pic2").attr("source", toString(result[2].previewURL));
+                       $("#pic3").attr("source", toString(result[3].previewURL));
+                       
+                       $("#likes0").html(toString(result[0].likes));
+                       $("#likes1").html(toString(result[2].likes));
+                       $("#likes2").html(toString(result[3].likes));
+                       $("#likes3").html(toString(result[4].likes));
+                   }
+               });//ajax 
+            });
+        </script>
+        
+        </body>
+</html>
