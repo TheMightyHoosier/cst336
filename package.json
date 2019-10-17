@@ -9,8 +9,10 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "hbs": "~4.0.4",
+    "faker": "^4.1.0",
+    "hbs": "^4.0.6",
     "http-errors": "~1.6.3",
+    "knock-knock-jokes": "^1.7.0",
     "morgan": "~1.9.1"
   }
 }
