@@ -1,0 +1,15 @@
+body {
+    background-color: #CBE2F6;
+    text-align: center;
+}
+
+div {
+   word-wrap: break-word;
+   width: 700px;
+   margin: 0 auto;
+   font-size: 1.4em;
+}
+
+nav {
+    font-size: 2em;
+}

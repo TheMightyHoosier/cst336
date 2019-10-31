@@ -9,7 +9,7 @@ app.get("/", function(req, res){
 });
 
 app.get("/mercury", function(req, res){
-    res.send("This will be a Mercury web page!");
+    res.render("mercury.html");
 });
 
 app.get("/venus", function(req, res){
@@ -21,4 +21,3 @@ app.listen("8080", "0.0.0.0", function(){
     console.log("Express Server is Running...");
 });
 
-//Finished off on page 7
