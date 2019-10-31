@@ -6,19 +6,27 @@ app.use(express.static("public"));
 
 //routes
 app.get("/", function(req, res){
-    res.render("index.html");
+    var randomName = faker.name.findName();
+    console.log("This is " + randomName);
+    res.render("index.html", { Title: randomName});
 });
 
 app.get("/igneous", function(req, res){
-    res.render("igneous.html");
+    var randomName = faker.name.findName();
+    console.log("This is " + randomName);
+    res.render("igneous.html", { Title: randomName});
 });
 
 app.get("/sedimentary", function(req, res){
-    res.render("sedimentary.html");
+    var randomName = faker.name.findName();
+    console.log("This is " + randomName);
+    res.render("sedimentary.html", { Title: randomName});
 });
 
 app.get("/metamorphic", function(req, res){
-    res.render("metamorphic.html");
+    var randomName = faker.name.findName();
+    console.log("This is " + randomName);
+    res.render("metamorphic.html", { Title: randomName});
 });
 
 //server listener
