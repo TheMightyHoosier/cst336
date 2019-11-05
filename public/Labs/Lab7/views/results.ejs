@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Pixabay Search (Express Version) </title>
+        <link rel="stylesheet" href="/css/styles.css" />
+        <meta charset="utf-8" />
+    </head>
+    <body>
+
+        <h1> Pixabay Search Results </h1>
+        
+        <form action="/results">
+            
+            Keyword: <input type="text" name="keyword">
+            <select name="orientation">
+                <option value="horizontal">Horizontal</option>
+                <option value="vertical">Vertical</option>
+            </select>
+            <button> Search! </button>
+            
+        </form> <br>
+        
+        <p>Likes: <%= images.hits[1].likes %> <%= images.hits[2].likes %>       |        <%= images.hits[3].likes %> <%= images.hits[4].likes %></p>
+        <img src='<%= images.hits[1].largeImageURL %>' width='250'>
+         <img src='<%= images.hits[2].largeImageURL %>' width='250'>
+          <img src='<%= images.hits[3].largeImageURL %>' width='250'>
+           <img src='<%= images.hits[4].largeImageURL %>' width='250'>
+        
+
+    </body>
+</html>
