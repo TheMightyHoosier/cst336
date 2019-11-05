@@ -20,11 +20,24 @@
             
         </form> <br>
         
-        <p>Likes: <%= images.hits[1].likes %> <%= images.hits[2].likes %>       |        <%= images.hits[3].likes %> <%= images.hits[4].likes %></p>
-        <img src='<%= images.hits[1].largeImageURL %>' width='250'>
-         <img src='<%= images.hits[2].largeImageURL %>' width='250'>
-          <img src='<%= images.hits[3].largeImageURL %>' width='250'>
-           <img src='<%= images.hits[4].largeImageURL %>' width='250'>
+        <div class="flex-container1">
+            <div class="flex-container2">
+                <div>Likes: <%= images.hits[1].likes %></div>
+                <img src='<%= images.hits[1].largeImageURL %>' width='250'>
+            </div>
+            <div class="flex-container2">
+                <div>Likes: <%= images.hits[2].likes %></div>
+                <img src='<%= images.hits[2].largeImageURL %>' width='250'>
+            </div>
+            <div class="flex-container2">
+                <div>Likes: <%= images.hits[3].likes %></div>
+                <img src='<%= images.hits[3].largeImageURL %>' width='250'>
+            </div>
+            <div class="flex-container2">
+                <div>Likes: <%= images.hits[4].likes %></div>
+                <img src='<%= images.hits[4].largeImageURL %>' width='250'>
+            </div>
+        </div>
         
 
     </body>

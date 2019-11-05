@@ -8,11 +8,13 @@ const request = require('request');
 //routes
 app.get("/", async function(req, res){
     
- let parsedData = await getImages("otters");
- 
- console.dir("parsedData: " + parsedData); //displays content of the object
+    let keyword = "snow";
+    let orientation = "horizontal";
+    let parsedData = await getImages(keyword , orientation);
     
- res.render("index", {"image":parsedData.hits[0].largeImageURL});
+    console.log("Am I being Heard?");
+    
+    res.render("index.ejs", {"images":parsedData});
             
 }); //root route
 
@@ -24,11 +26,6 @@ app.get("/results", async function(req, res){
     let orientation = req.query.orientation;
     
     let parsedData = await getImages(keyword, orientation);
-    
-    // let r1 = Math.floor(Math.random() * 4);
-    // let r2 = Math.floor(Math.random() * 5);
-    // let r3 = Math.floor(Math.random() * 5);
-    // let r4 = Math.floor(Math.random() * 5);
 
     res.render("results", {"images":parsedData});
     
