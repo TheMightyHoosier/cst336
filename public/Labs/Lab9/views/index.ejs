@@ -9,7 +9,7 @@
 
         <form action="/quotes">
    
-            Keyword: <input type="text" name="keyword">
+            Keyword: <input type="text" name="keyword"> <br><br>
             
             Category: 
             <select name="category">
@@ -21,7 +21,15 @@
                 
                 <% }); %>
                 
-            </select>
+            </select> <br><br>
+            
+            AuthorFirst: <input type="text" name="authorfirst"> <br><br>
+            
+            AuthorLast: <input type="text" name="authorlast"> <br><br>
+            
+            Gender: <br><input type="radio" name="gender" value=""> No preference<br>
+            <input type="radio" name="gender" value="M"> Male<br>
+            <input type="radio" name="gender" value="F"> Female<br><br>
             
             <!--TODO -->
             <!-- 1. Add dropdown menu with author's names from the database-->
