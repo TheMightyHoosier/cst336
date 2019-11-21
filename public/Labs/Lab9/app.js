@@ -5,9 +5,9 @@
 
 const express = require("express");
 const mysql = require("mysql");
-const app = express();
+const app = express.Router();
 app.set("view.engine", "ejs");
-app.use(express.static("public")); //folder for images, css, js
+//app.use(express.static("public")); //folder for images, css, js
 
 //routes
 app.get("/", async function(req, res){
@@ -154,3 +154,5 @@ function dbConnection(){
     
     return conn;
 }
+
+//module.exports = app;

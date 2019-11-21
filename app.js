@@ -25,7 +25,7 @@ app.use('/users', usersRouter);
 
 //////////////////////////////////////////////////
 
-var lab9Router = require('./public/Labs/Lab9/router');
+var lab9Router = require('./public/Labs/Lab9/app');
 
 app.use('/Labs/Lab9', lab9Router);
 
