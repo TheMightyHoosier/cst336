@@ -22,6 +22,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+
+//////////////////////////////////////////////////
+
+var lab9Router = require('./public/Labs/Lab9/router');
+
+app.use('/Labs/Lab9', lab9Router);
+
+//////////////////////////////////////////////////
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
