@@ -25,7 +25,7 @@ app.get("/quotes", async function(req, res){
     
     let rows = await getQuotes(req.query);
     
-    res.render("quotes.ejs", {"records":rows});
+    res.render("../public/Labs/Lab9/quotes", {"records":rows});
     
 });//quotes
 
