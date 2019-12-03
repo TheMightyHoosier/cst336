@@ -9,10 +9,25 @@
     <body>
         <h1> Admin Page </h1> <br><br>
         
-        <% authors.forEach( function(author){ %>
-            <p><%= author.firstName %>, <%= author.lastName %></p> 
-            <br><br>
-        <% }); %>
+        <table style="width:100%">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
+                <th>DOD</th>
+            </tr>
+            
+            <% authors.forEach( function(author){ %>
+            <tr>
+                <th><%= author.authorId %></th>
+                <th><%= author.firstName %></th>
+                <th><%= author.lastName %></th>
+                <th><%= author.dob %></th>
+                <th><%= author.dod %></th>
+            </tr>
+            <% }); %>
+        </table>
         
     </body>
 </html>
