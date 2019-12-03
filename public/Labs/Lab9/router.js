@@ -3,12 +3,15 @@
 // Password: c0r6l9d6cz99aoml
 // Database: xemupjrbgve6imdc
 
+//Have this running in a bash:
+//docker run -p 8081:8080 -e ADMINER_DEFAULT_SERVER=mysql adminer
+
 const express = require("express");
 const mysql = require("mysql");
 const app = express.Router();
 
 //routes
-app.get("/", async function(req, res){
+app.get("/", async function(req, res, next){
     
     let categories = await getCategories();
     //let authors = await getAuthors();
@@ -21,7 +24,7 @@ app.get("/", async function(req, res){
     
 });//root
 
-app.get("/quotes", async function(req, res){
+app.get("/quotes", async function(req, res, next){
     
     let rows = await getQuotes(req.query);
     
