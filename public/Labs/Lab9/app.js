@@ -6,8 +6,6 @@
 const express = require("express");
 const mysql = require("mysql");
 const app = express.Router();
-app.set("view.engine", "ejs");
-//app.use(express.static("public")); //folder for images, css, js
 
 //routes
 app.get("/", async function(req, res){
@@ -16,7 +14,7 @@ app.get("/", async function(req, res){
     //let authors = await getAuthors();
     console.log(categories);
     
-    res.render("index.ejs", {"categories":categories, 
+    res.render("../public/Labs/Lab9/index", {"categories":categories, 
                                 //"authors":authors
         
     });
@@ -136,13 +134,6 @@ app.get("/dbTest", async function(req, res){
     
 });//dbTest
 
-//starting server
-app.listen(process.env.PORT, process.env.IP, function(){
-    
-    console.log("Express server is running...");
-    
-});
-
 function dbConnection(){
     
     let conn = mysql.createConnection({
@@ -155,4 +146,4 @@ function dbConnection(){
     return conn;
 }
 
-//module.exports = app;
+module.exports = app;
