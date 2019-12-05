@@ -76,6 +76,20 @@ router.get("/admin", async function(req, res, next){
     
 });//admin page
 
+router.get("/addAuthor", async function(req, res, next){
+    
+    if(req.session && req.session.username && req.session.username.length) {
+        res.render("../public/Labs/Lab10/addAuthor", {
+            username: req.session.username,
+        });
+    } else {
+        delete req.session.username;
+        res.redirect('/Labs/Lab10/login');
+    }
+    
+    
+});//addAuthor page
+
 ////////////////////////////////////////////////////////////////////
 
 function getAuthors(query){

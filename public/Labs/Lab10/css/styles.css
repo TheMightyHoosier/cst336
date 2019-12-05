@@ -260,3 +260,8 @@ input[type=text]:placeholder {
 #icon {
   width:60%;
 }
+
+.table {
+   margin: 0 auto;
+   width: 80% !important; 
+}

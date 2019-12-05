@@ -3,32 +3,63 @@
     <head>
         <title> Lab 10 Admin Page </title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1> Admin Page </h1> <br>
-        <h2> Welcome, <%= username %></h2>
-        
-        <table style="width:100%">
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>DOB</th>
-                <th>DOD</th>
-            </tr>
+        <div class="wrapper">
+            <h1> Admin Page </h1> <br>
+            <h2> Welcome, <%= username %> </h2> 
+            <button id="logoutButton" class="btn btn-secondary m-1"> Logout </button> <br>
             
-            <% authors.forEach( function(author){ %>
-            <tr>
-                <th><%= author.authorId %></th>
-                <th><%= author.firstName %></th>
-                <th><%= author.lastName %></th>
-                <th><%= author.dob %></th>
-                <th><%= author.dod %></th>
-            </tr>
-            <% }); %>
-        </table>
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>DOB</th>
+                    <th>DOD</th>
+                    <th><button id="newAuthButton" class="btn btn-secondary m-1"> New Author </button></th>
+                    <th></th>
+                </tr>
+                
+                <% authors.forEach( function(author){ %>
+                <tr>
+                    <th><%= author.authorId %></th>
+                    <th><%= author.firstName %></th>
+                    <th><%= author.lastName %></th>
+                    <th><%= new Date(author.dob).toDateString(); %></th>
+                    <th><%= new Date(author.dod).toDateString(); %></th>
+                    <th><button class="btn btn-secondary m-1"> Edit </button></th>
+                    <th><button class="btn btn-secondary m-1"> Delete </button></th>
+                </tr>
+                <% }); %>
+            </table>
+        </div>
+        
+        
+        
+        <script>
+            $(document).ready(function(){
+                
+                $('#logoutButton').on('click', function(e){
+                    //Do not submit until we are ready.
+                    e.preventDefault();
+                    
+                    
+                });
+                
+                $('#newAuthButton').on('click', function(e){
+                    //Do not submit until we are ready.
+                    e.preventDefault();
+                    
+                    window.location.href = '/Labs/Lab10/addAuthor'
+                });
+            });
+        
+            
+        </script>
         
     </body>
 </html>

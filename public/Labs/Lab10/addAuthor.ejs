@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Lab 10 Add Author Page </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        
+        
+        <!-- Add Author Form -->
+        <div class="wrapper">
+            
+            <h1> Add Author Page </h1> <br>
+            <h2> Welcome, <%= username %></h2> <br>
+            
+            <div id="formContent">
+                <form>
+                    Author's First Name: <input type="text" id="AFirst">
+                    Author's Last Name: <input type="text" id="ALast">
+                    
+                    Author's Date of Birth: <input type="date" class="form-control mr-6 ml-6" id="Adob">
+                    Author's Date of Death: <input type="date" class="form-control mr-6 ml-6" id="Adod">
+                    
+                    Author's Gender: <br>
+                    <input type="radio" name="gender" value="M"> Male <br>
+                    <input type="radio" name="gender" value="F"> Female <br>
+                    <input type="radio" name="gender" value="B"> Non-Binary <br>
+                
+                    <button id="submitNewAuthor" class="btn btn-primary m-2"> Add Author </button>
+                    <button id="cancelButton" class="btn btn-secondary m-2"> Cancel </button>
+                    <div id="alertingAdd" class="alert alert-danger m-2" role="alert"></div>
+                </form>
+            </div>
+        </div>
+        
+        
+        <script>
+            $(document).ready(function(){
+                
+                $('#alertingAdd').hide();
+                
+                $('#submitNewAuthor').on('click', function(e){
+                    //Do not submit until we are ready.
+                    e.preventDefault();
+                    
+                    
+                });
+                
+                $('#cancelButton').on('click', function(e){
+                    //Do not submit until we are ready.
+                    e.preventDefault();
+                    
+                    window.location.href = '/Labs/Lab10/admin'
+                });
+            });
+        
+            
+        </script>
+        
+    </body>
+</html>
