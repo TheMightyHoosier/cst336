@@ -29,7 +29,7 @@ const router = express.Router();
 //routes
 
 router.get("/login", async function(req, res, next){
-    
+    delete req.session.username;
     res.render("../public/Labs/Lab10/login");
     
 });
