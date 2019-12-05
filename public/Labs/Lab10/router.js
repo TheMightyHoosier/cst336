@@ -8,17 +8,73 @@
 
 const express = require("express");
 const mysql = require("mysql");
+const session = require("express-session");
+//const bcrypt = require("bcrypt");
 const router = express.Router();
 
 ////////////////////////////////////////////////////////////////////
 
+// router.use(session({
+//     secret:"top secret!",
+//     resave:true,
+//     saveUninitialized:true
+// }));
+
+// router.use(express.urlencoded({
+//     extended:true
+// }));//To be able to parse POST parameters
+
+////////////////////////////////////////////////////////////////////
+
 //routes
-router.get("/", async function(req, res, next){
+
+router.get("/login", async function(req, res, next){
+    
+    res.render("../public/Labs/Lab10/login");
+    
+});
+
+router.post("/login", function(req, res, next){
+    
+    //console.log("Inside router post");
+   
+   //TODO: Do something to log in...
+   let successful = false;
+   let message = '';
+   if(req.body.username === 'hello' && req.body.password === 'world') {
+       successful = true;
+       req.session.username = req.body.username;
+   } else {
+       delete req.session.username;
+       message = 'Wrong username or password...';
+   }
+   
+   //console.log("req.body: ", req.body);
+   
+   //Return success or failure
+   res.json({
+       successful: successful,
+       message: message
+   });
+    
+});
+
+router.get("/admin", async function(req, res, next){
     
     let authors = await getAuthors();
-    res.render("../public/Labs/Lab10/index", {"authors":authors});
     
-});//root
+    if(req.session && req.session.username && req.session.username.length) {
+        res.render("../public/Labs/Lab10/admin", {
+            username: req.session.username,
+            "authors":authors
+        });
+    } else {
+        delete req.session.username;
+        res.redirect('/Labs/Lab10/login');
+    }
+    
+    
+});//admin page
 
 ////////////////////////////////////////////////////////////////////
 

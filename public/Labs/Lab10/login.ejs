@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Lab 10 Admin Login Page </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+                </div>
+
+                <!-- Login Form -->
+                <form>
+                  <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+                  <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+                  <!--<input type="submit" class="fadeIn fourth" value="Log In">-->
+                  <button id="loginButton" class="btn btn-primary fadeIn fourth m-2">Login</button>
+                  <div id="alerting" class="alert alert-danger m-2" role="alert"></div>
+                </form>
+
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    <a class="underlineHover" href="#">Forgot Password?</a>
+                </div>
+
+            </div>
+        </div>
+        
+        <script>
+            $(document).ready(function(){
+                
+                $('#alerting').hide();
+                
+                $('#loginButton').on('click', function(e){
+                    //Do not submit until we are ready.
+                    e.preventDefault();
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "/Labs/Lab10/login",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            "username": $("#login").val(),
+                            "password": $("#password").val()
+                        }),
+                        success: function(result, status) {
+                            console.log("Got login status back", result);
+                            if(result.successful) {
+                                window.location.href = '/Labs/Lab10/admin'
+                            } else {
+                                //Show an error message and stay here.
+                                $('#alerting').html(result.message);
+                                $('#alerting').show();
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            err = eval("Error: (" + xhr.responseText + ")");
+                            console.error(err);
+                        },
+                        complete: function(data, status) {
+                            //optional, used for debugging purposes.
+                            console.log(status);
+                        }
+                    })
+                });
+            });
+        
+            
+        </script>
+        
+    </body>
+</html>
