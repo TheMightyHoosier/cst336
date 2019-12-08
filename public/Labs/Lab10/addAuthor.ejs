@@ -45,7 +45,39 @@
                 $('#submitNewAuthor').on('click', function(e){
                     //Do not submit until we are ready.
                     e.preventDefault();
+                    //$('input[name=gender]:checked').val()
                     
+                    $.ajax({
+                        type: "POST",
+                        url: "/Labs/Lab10/addAuthor",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            "AFirst": $("#AFirst").val(),
+                            "ALast": $("#ALast").val(),
+                            "Adob": $("#Adob").val(),
+                            "Adod": $("#Adod").val(),
+                            "Gender": $('input[name=gender]:checked').val()
+                        }),
+                        success: function(result, status) {
+                            console.log("Got login status back", result);
+                            if(result.successful) {
+                                window.location.href = '/Labs/Lab10/admin'
+                            } else {
+                                //Show an error message and stay here.
+                                //$('#alerting').html(result.message);
+                                //$('#alerting').show();
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            err = eval("Error: (" + xhr.responseText + ")");
+                            console.error(err);
+                        },
+                        complete: function(data, status) {
+                            //optional, used for debugging purposes.
+                            console.log(status);
+                        }
+                    })
                     
                 });
                 

@@ -41,7 +41,7 @@ router.post("/login", function(req, res, next){
    //TODO: Do something to log in...
    let successful = false;
    let message = '';
-   if(req.body.username === 'hello' && req.body.password === 'world') {
+   if(req.body.username === 'admin' && req.body.password === 'admin') {
        successful = true;
        req.session.username = req.body.username;
    } else {
@@ -80,7 +80,7 @@ router.get("/addAuthor", async function(req, res, next){
     
     if(req.session && req.session.username && req.session.username.length) {
         res.render("../public/Labs/Lab10/addAuthor", {
-            username: req.session.username,
+            username: req.session.username
         });
     } else {
         delete req.session.username;
@@ -89,6 +89,10 @@ router.get("/addAuthor", async function(req, res, next){
     
     
 });//addAuthor page
+
+router.post("/addAuthor", async function(req, res, next){
+    await newAuthor();
+});
 
 ////////////////////////////////////////////////////////////////////
 
@@ -111,6 +115,32 @@ function getAuthors(query){
     });//promise
     
 }//getAuthors
+
+////////////////////////////////////////////////////////////////////
+
+function newAuthor(query){
+    
+    let AFirst = query.AFirst;
+    let ALast = query.ALast;
+    let Adob = query.Adob;
+    let Adod = query.Adod;
+    let Gender = query.Gender;
+    let conn = dbConnection();
+    
+    return new Promise(function(resolve, reject){
+        conn.connect(function(err){
+            if(err) throw err;
+            console.log("Successfully connected to the database!");
+            
+            let sql = `INSERT INTO l9_author (firstName, lastName, dob, dod, sex) VALUES ('${AFirst}', '${ALast}', '${Adob}', '${Adod}', '${Gender}')`;
+            
+            conn.query(sql, function(err, rows, fields){
+                if(err) throw err;
+                resolve(rows);
+            });
+        });
+    });
+}
 
 ////////////////////////////////////////////////////////////////////
 

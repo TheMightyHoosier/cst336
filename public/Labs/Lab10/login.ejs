@@ -13,8 +13,8 @@
 
                 <!-- Login Form -->
                 <form>
-                  <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-                  <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+                  <input type="text" id="login" class="fadeIn second" name="login" placeholder="login is admin">
+                  <input type="text" id="password" class="fadeIn third" name="login" placeholder="password is also admin">
                   <!--<input type="submit" class="fadeIn fourth" value="Log In">-->
                   <button id="loginButton" class="btn btn-primary fadeIn fourth m-2">Login</button>
                   <div id="alerting" class="alert alert-danger m-2" role="alert"></div>
@@ -47,7 +47,7 @@
                             "password": $("#password").val()
                         }),
                         success: function(result, status) {
-                            console.log("Got login status back", result);
+                            console.log("Successfully posted to database", result);
                             if(result.successful) {
                                 window.location.href = '/Labs/Lab10/admin'
                             } else {
