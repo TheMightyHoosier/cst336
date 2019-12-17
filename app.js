@@ -11,10 +11,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 app.use(session({
-  secret: 'ude5xiQSPl',
-  // resave: false,
-  // saveUninitialized: true,
-  // cookie: {secure: true}
+  secret: 'ude5xiQSPl'
 }));
 
 // view engine setup
@@ -27,6 +24,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
+var mysqlAdmin = require('node-mysql-admin');
+app.use(mysqlAdmin(app));
+
+
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
@@ -38,6 +44,9 @@ app.use('/Labs/Lab9', lab9Router);
 
 var lab10Router = require('./public/Labs/Lab10/router');
 app.use('/Labs/Lab10', lab10Router);
+
+var finalRouter = require('./public/Final/router');
+app.use('/Final', finalRouter);
 
 //////////////////////////////////////////////////
 

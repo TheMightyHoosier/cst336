@@ -25,9 +25,9 @@
                     Author's Date of Death: <input type="date" class="form-control mr-6 ml-6" id="Adod">
                     
                     Author's Gender: <br>
-                    <input type="radio" name="gender" value="M"> Male <br>
-                    <input type="radio" name="gender" value="F"> Female <br>
-                    <input type="radio" name="gender" value="B"> Non-Binary <br>
+                    <!--<input type="radio" name="gender" value="M"> Male <br>-->
+                    <!--<input type="radio" name="gender" value="F"> Female <br>-->
+                    <!--<input type="radio" name="gender" value="B"> Non-Binary <br>-->
                 
                     <button id="submitNewAuthor" class="btn btn-primary m-2"> Add Author </button>
                     <button id="cancelButton" class="btn btn-secondary m-2"> Cancel </button>
@@ -44,12 +44,18 @@
                 
                 $('#submitNewAuthor').on('click', function(e){
                     //Do not submit until we are ready.
-                    e.preventDefault();
+                    //e.preventDefault();
                     //$('input[name=gender]:checked').val()
                     
+                    let Gender = "B";
+                    let Profession = "Professional Influencer";
+                    let Country = "Soviet Russia";
+                    let Portrait = "No Image Available";
+                    let Biography = "They were alright I suppose..";
+                    
                     $.ajax({
-                        type: "POST",
-                        url: "/Labs/Lab10/addAuthor",
+                        type: "GET",
+                        url: "/Labs/Lab10/addAuthorRequest",
                         dataType: "json",
                         contentType: "application/json",
                         data: JSON.stringify({
@@ -57,20 +63,24 @@
                             "ALast": $("#ALast").val(),
                             "Adob": $("#Adob").val(),
                             "Adod": $("#Adod").val(),
-                            "Gender": $('input[name=gender]:checked').val()
+                            //"Gender": $('input[name=gender]:checked').val(),
+                            "Gender": Gender,
+                            "Profession": Profession,
+                            "Country": Country,
+                            "Portrait": Portrait,
+                            "Biography": Biography
+                            
                         }),
-                        success: function(result, status) {
-                            console.log("Got login status back", result);
-                            if(result.successful) {
-                                window.location.href = '/Labs/Lab10/admin'
-                            } else {
-                                //Show an error message and stay here.
-                                //$('#alerting').html(result.message);
-                                //$('#alerting').show();
-                            }
+                        success: function(data, status) {
+                            console.log("Got data back", data);
                         },
                         error: function(xhr, status, error) {
                             err = eval("Error: (" + xhr.responseText + ")");
+                            console.log($("#AFirst").val());
+                            console.log($("#ALast").val());
+                            console.log($("#Adob").val());
+                            console.log($("#Adod").val());
+                            
                             console.error(err);
                         },
                         complete: function(data, status) {

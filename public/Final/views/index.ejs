@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Final Scheduler </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!--<link href="css/styles.css" rel="stylesheet" type="text/css" />-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body class="text-center">
+        <div class="container">
+            <h1>Scheduled Availability</h1>
+            <button id="home" class="btn btn-primary m-1">Home</button>
+            <button id="rubric" class="btn btn-primary m-1">Rubric</button>
+            <button id="admin" class="btn btn-warning m-1">Admin Login</button>
+            
+            <table class="table table-bordered">
+                <thead class="thead thead-light">
+                    <th>Appointment ID</th>
+                    <th>Appointment Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Booked By</th>
+                    <th></th>
+                </thead>
+                <% appointments.forEach(function(appointment){ %>
+                <tr>
+                    <th><%= appointment.appointmentId %></th>
+                    <th><%= new Date(appointment.dateOf).toDateString(); %></th>
+                    <th><%= appointment.startTime %></th>
+                    <th><%= appointment.endTime %></th>
+                    <th><%= appointment.bookedBy %></th>
+                    <th><a id="btn<%= appointment.appointmentId %>" class="btn btn-edit btn-secondary" 
+                        data-appointmentId="<%= appointment.appointmentId %>"
+                        data-appointmentBooked="<%= appointment.bookedBy %>"
+                        data-appointmentDate="<%= appointment.dateOf %>"
+                        data-appointmentStart="<%= appointment.startTime %>"
+                        data-appointmentEnd="<%= appointment.endTime %>"
+                        data-toggle="modal" data-target="#editModal">Book</a></th>
+                </tr>
+                <% }); %>
+            </table>
+            
+            <!--Edit Modal-->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labeledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            
+                            <h5 class="modal-title" id="exampleModalLabel">Book Appointment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            
+                        </div>
+                        <div class="modal-body">
+                            
+                            <table class="table table bordered">
+                                <thead class="thead thead-light">
+                                    <th>Appointment Details</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th><label>ID</label></th>
+                                        <th><input id="appointmentId" type="text"</th>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Appointment Date: </label></th>
+                                        <th><input id="dateOf" type="date"/></th>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Start Time: </label></th>
+                                        <th><input id="startTime" type="time"/></th>
+                                    </tr>
+                                    <tr>
+                                        <th><label>End Time: </label></th>
+                                        <th><input id="endTime" type="time"/></th>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Booked By: </label></th>
+                                        <th><input id="bookedBy" type="text"/></th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button id="editSaveButton" type="button" class="btn btn-success m-1" data-dismiss="modal">Save Changes</button>
+                            <button id="editCancelButton" type="button" class="btn btn-secondary m-1" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+        </div>
+        <script>
+            $('#home').on('click', function(e){
+               window.location.href = '/Final' 
+            });
+            $('#rubric').on('click', function(e){
+               window.location.href = '/Final/rubric' 
+            });
+            $('#admin').on('click', function(e){
+               window.location.href = '/Final/admin' 
+            });
+            
+            // $(".btn-edit").on("click", function(e) {
+            //     console.log("Appointment ID is", $(".btn-edit").attr("data-appointmentId"));
+            //     $('#dateOf').val($(".btn-edit").attr("data-appointmentDate"));
+            //     $('#startTime').val($(".btn-edit").attr("data-appointmentStart"));
+            //     $('#endTime').val($(".btn-edit").attr("data-appointmentEnd"));
+            //     $('#bookedBy').val($(".btn-edit").attr("data-appointmentBooked"));
+            // });
+            
+            $('#editSaveButton').on('click', function(e) {
+                let dateOf = $("#dateOf").val();
+                let startTime = $("#startTime").val();
+                let endTime = $("#endTime").val();
+                let bookedBy = $("#bookedBy").val();
+                let appointmentId = $("#appointmentId").val();
+                
+                $.ajax({
+                    method: "GET",
+                    url: "/Final/editAppointmentRequest",
+                    dataType: "json",
+                    data: {
+                        "dateOf": dateOf,
+                        "startTime": startTime,
+                        "endTime": endTime,
+                        "bookedBy": bookedBy,
+                        "appointmentId": appointmentId
+                    },
+                    success: function(result, status) {
+                        console.log("It might have just worked!");
+                        window.location.reload();
+                    }
+                });
+            });
+            
+        </script>
+    </body>
+</html>

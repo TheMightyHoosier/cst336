@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Final Scheduler </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!--<link href="css/styles.css" rel="stylesheet" type="text/css" />-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body class="text-center">
+        <div class="container">
+            <h1>Project Rubric</h1>
+            <button id="home" class="btn btn-primary m-1">Home</button>
+            <button id="rubric" class="btn btn-primary m-1">Rubric</button>
+            <button id="admin" class="btn btn-warning m-1">Admin Login</button>
+            
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                <th style="text-align:left">#</th>
+                <th style="text-align:left">Task Description</th>
+                <th style="text-align:left">Points</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td style="text-align:left">1</td>
+                <td style="text-align:left" class="text-success">You provide a ERD diagram representing the data and its relationships. This may be included in Cloud9 as a picture or from a designer tool</td>
+                <td style="text-align:left">10</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">2</td>
+                <td style="text-align:left" class="text-success">Tables in MySQL match the ERD and support the requirements of the application</td>
+                <td style="text-align:left">20</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">3</td>
+                <td style="text-align:left" class="text-success">The list of available appointments is pulled from MySQL using the API endpoint and displayed using the specified page design</td>
+                <td style="text-align:left">20</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">4</td>
+                <td style="text-align:left" class="text-danger">Available times with dates in the past do not show up in the Dashboard list</td>
+                <td style="text-align:left">5</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">5</td>
+                <td style="text-align:left" class="text-success">A user can add an available time slot to the MySQL using the API endpoint and displayed using the specified modal design</td>
+                <td style="text-align:left">20</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">6</td>
+                <td style="text-align:left" class="text-warning">A user can remove an available time slot from MySQL using the API endpoint</td>
+                <td style="text-align:left">15</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">7</td>
+                <td style="text-align:left" class="text-warning">The user confirms the removal using the specified modal design</td>
+                <td style="text-align:left">10</td>
+                </tr>
+                <tr>
+                <td style="text-align:left"></td>
+                <td style="text-align:left">TOTAL</td>
+                <td style="text-align:left">100</td>
+                </tr>
+                <tr>
+                <td style="text-align:left"></td>
+                <td style="text-align:left" class="text-success">This rubric is properly included AND UPDATED (BONUS)</td>
+                <td style="text-align:left">2</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">BD</td>
+                <td style="text-align:left" class="text-danger">Login works with a User table and BCrypt</td>
+                <td style="text-align:left">20</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">BD</td>
+                <td style="text-align:left" class="text-danger">Add Google Signin for app login</td>
+                <td style="text-align:left">10</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">BD</td>
+                <td style="text-align:left" class="text-success">The app is deployed to Heroku</td>
+                <td style="text-align:left">5</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">BD</td>
+                <td style="text-align:left" class="text-danger">A banner file can be uploaded and displayed</td>
+                <td style="text-align:left">20</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">BD</td>
+                <td style="text-align:left" class="text-danger">The user can add multiple available time slots as specified</td>
+                <td style="text-align:left">10</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">BD</td>
+                <td style="text-align:left" class="text-danger">In a separate page, you show the correct list of available time slots to the user who navigates to the correct invitation URL</td>
+                <td style="text-align:left">10</td>
+                </tr>
+                <tr>
+                <td style="text-align:left">BD</td>
+                <td style="text-align:left" class="text-warning">You correctly implement booking of the appointement, including all side effects</td>
+                <td style="text-align:left">30</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <script>
+            $('#home').on('click', function(e){
+               window.location.href = '/Final' 
+            });
+            $('#rubric').on('click', function(e){
+               window.location.href = '/Final/rubric' 
+            });
+            $('#admin').on('click', function(e){
+               window.location.href = '/Final/admin' 
+            });
+        </script>
+    </body>
+</html>

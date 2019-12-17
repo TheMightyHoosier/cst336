@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Final Scheduler </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!--<link href="css/styles.css" rel="stylesheet" type="text/css" />-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body class="text-center">
+        
+       <div class="container">
+            <div class="form-group">
+                <form>
+                    <h2 class="m-2"> Admin Login </h2>
+                    <input type="text" id="login" class="m-2" name="login" placeholder="username is admin">
+                    <input type="text" id="password" class="m-2" name="login" placeholder="password is admin">
+                    <button id="loginButton" class="btn btn-primary m-2">Login</button>
+                    <button id="backButton" class="btn btn-danger m-2">Back</button>
+                    <div id="alerting" class="alert alert-danger m-2 hidden" role="alert"></div>
+                </form>
+            </div>
+        </div> 
+        
+        <script>
+        
+            $(document).ready(function(){
+               $('#alerting').hide(); 
+            });
+        
+            $('#loginButton').on('click', function(e){
+                    //Do not submit until we are ready.
+                    e.preventDefault();
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "/Final/login",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            "username": $("#login").val(),
+                            "password": $("#password").val()
+                        }),
+                        success: function(result, status) {
+                            console.log("Successfully posted to database", result);
+                            if(result.successful) {
+                                window.location.href = '/Final/admin'
+                            } else {
+                                //Show an error message and stay here.
+                                $('#alerting').html(result.message);
+                                $('#alerting').show();
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            err = eval("Error: (" + xhr.responseText + ")");
+                            console.error(err);
+                        },
+                        complete: function(data, status) {
+                            //optional, used for debugging purposes.
+                            console.log(status);
+                        }
+                    })
+                });
+                
+            $('#backButton').on('click', function(e){
+               window.location.href = '/Final' 
+            });
+        </script>
+        
+    </body>
+</html>

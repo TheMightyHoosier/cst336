@@ -76,9 +76,12 @@ router.get("/admin", async function(req, res, next){
     
 });//admin page
 
-router.get("/addAuthor", async function(req, res, next){
+router.get("/addAuthor", (req, res) => {
     
     if(req.session && req.session.username && req.session.username.length) {
+        
+        
+        
         res.render("../public/Labs/Lab10/addAuthor", {
             username: req.session.username
         });
@@ -90,8 +93,28 @@ router.get("/addAuthor", async function(req, res, next){
     
 });//addAuthor page
 
-router.post("/addAuthor", async function(req, res, next){
-    await newAuthor();
+router.get("/addAuthorRequest", async function(req, res, next){
+    
+    const connection = mysql.createConnection({
+        host: 'w29ifufy55ljjmzq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        username: 'icrhy3geicbf2phb',
+        password: 'c0r6l9d6cz99aoml',
+        database: 'xemupjrbgve6imdc'
+    });
+    
+    connection.connect();
+    
+    connection.query(
+        'INSERT INTO \`l9_author\` (firstName, lastName, dob, dod, sex, profession, country, portrait, biography) VALUES (?,?,?,?,?,?,?,?,?)',
+        [req.body.AFirst, req.body.ALast, req.body.Adob, req.body.Adod, req.body.Gender, req.body.Profession, req.body.Country, req.body.Portrait, req.body.Biography],
+        (error, results, fields) => {
+            if (error) throw error;
+            // res.json({
+            //     id: results.insertId
+            // });
+        });
+        
+    connection.end();
 });
 
 ////////////////////////////////////////////////////////////////////
@@ -119,6 +142,8 @@ function getAuthors(query){
 ////////////////////////////////////////////////////////////////////
 
 function newAuthor(query){
+    
+    console.log(query.AFirst);
     
     let AFirst = query.AFirst;
     let ALast = query.ALast;
