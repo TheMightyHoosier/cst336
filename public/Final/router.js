@@ -1,3 +1,13 @@
+/*
+Notes for Jason:
+
+For some reason add works in aws but not in heroku. Similarly delete works in heroku but not in aws.
+I have tried my best throughout the weekend. Here is what I've got:
+
+
+*/
+
+
 // Host: w29ifufy55ljjmzq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
 // Username: icrhy3geicbf2phb
 // Password: c0r6l9d6cz99aoml
